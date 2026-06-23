@@ -1,0 +1,40 @@
+@page
+@model AuthorizationDemo.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET Core</h1>
+    <p class="lead">AuthorizationDemo has been modernized to Razor Pages for cloud-ready deployment on Azure.</p>
+    <p><a href="https://learn.microsoft.com/aspnet/core" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <form method="post">
+            <button type="submit" class="btn btn-default">Perform authorized Action</button>
+        </form>
+        @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+        {
+            <p class="text-success">@Model.StatusMessage</p>
+        }
+    }
+    else
+    {
+        <p class="text-warning">Sign in to perform the authorized action.</p>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>Razor Pages provides a page-focused model without ViewState or server affinity, making horizontal scaling easier in Azure.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Cloud configuration</h2>
+        <p>Connection strings and secrets are loaded from environment variables and optionally Azure Key Vault.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Secure access</h2>
+        <p>Use the secure page to validate authenticated access with ASP.NET Core authorization.</p>
+    </div>
+</div>
